@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>mask examples</title>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/class/index.js"></script>
+    <script src="../bower_components/overlay/index.js"></script>
+    <script src="../index.js"></script>
+</head>
+
+<body>
+<div id="mask-container" style="width: 300px; height: 300px;"></div>
+
+<script>
+$(document).mask();
+
+setTimeout(function(){
+    $(document).mask('setOpacity', 0.1).mask('setColor', 'red');
+
+    setTimeout(function(){
+        $(document).mask('instance').destroy();
+        $('#mask-container').mask();
+    }, 3000);
+}, 3000)
+</script>
+</body>
+</html>
