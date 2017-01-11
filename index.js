@@ -35,14 +35,13 @@ return Class.$factory('mask', Overlay, {
             top: 0,
             zIndex: 10000
         });
-        this.initEvent();
     },
 
     initEvent: function(){
         var self = this;
 
         self.o2s(window, 'resize', function(){
-            self.setSize();
+            self.setSize(false, false);
         });
     },
 
@@ -54,17 +53,9 @@ return Class.$factory('mask', Overlay, {
         this.css('backgroundColor', color);
     },
 
-    setSize: function(){
-        var container = this.container;
-
-        if(Overlay.isDocumentOrBody(container)){
-            container = $(document);
-        }
-
-        this.css({
-            width: container.outerWidth(),
-            height: container.outerHeight()
-        });
+    destroy: function(){
+        this._super.destroy.call(this);
+        this.ofs(window, 'resize');
     }
 });
 });
