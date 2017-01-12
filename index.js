@@ -51,10 +51,12 @@ return Class.$factory('mask', {
 
     open: function(){
         this.$overlay.open();
+        this.trigger('open');
     },
 
     close: function(){
         this.$overlay.close();
+        this.trigger('close');
     },
 
     destroy: function(){
