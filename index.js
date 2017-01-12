@@ -49,6 +49,14 @@ return Class.$factory('mask', {
         this.$overlay.css('backgroundColor', color);
     },
 
+    open: function(){
+        this.$overlay.open();
+    },
+
+    close: function(){
+        this.$overlay.close();
+    },
+
     destroy: function(){
         this.$overlay.destroy();
         this.$overlay = null;
