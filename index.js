@@ -12,7 +12,7 @@ if(typeof define == 'function' && define.amd){
     factory(window.jQuery, window.jQuery.klass, window.jQuery.overlay);
 }
 })(function($, Class, Overlay){
-return Class.$factory('mask', Overlay, {
+return Class.$factory('mask', {
     initialize: function(opt){
         var options = $.extend({
             dom: null,
@@ -22,7 +22,7 @@ return Class.$factory('mask', Overlay, {
             autoOpen: true
         }, opt || {});
 
-        this._super({
+        this.$overlay = new Overlay({
             container: options.dom || options.container,
             autoOpen: options.autoOpen,
             className: 'ui3-mask'
@@ -30,31 +30,28 @@ return Class.$factory('mask', Overlay, {
 
         this.setOpacity(options.opacity);
         this.setColor(options.color);
-        this.css({
-            left: 0,
-            top: 0,
-            zIndex: 10000
-        });
+        this.initEvent();
     },
 
     initEvent: function(){
         var self = this;
 
         self.o2s(window, 'resize', function(){
-            self.setSize(false, false);
+            self.$overlay.setSize(false, false);
         });
     },
 
     setOpacity: function(opacity){
-        this.css('opacity', opacity);
+        this.$overlay.css('opacity', opacity);
     },
 
     setColor: function(color){
-        this.css('backgroundColor', color);
+        this.$overlay.css('backgroundColor', color);
     },
 
     destroy: function(){
-        this._super.destroy.call(this);
+        this.$overlay.destroy();
+        this.$overlay = null;
         this.ofs(window, 'resize');
     }
 });
