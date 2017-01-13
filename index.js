@@ -24,13 +24,14 @@ return Class.$factory('mask', {
 
         this.$overlay = new Overlay({
             container: options.dom || options.container,
-            autoOpen: options.autoOpen,
+            autoOpen: false,
             className: 'ui3-mask'
         });
 
         this.setOpacity(options.opacity);
         this.setColor(options.color);
         this.initEvent();
+        options.autoOpen && this.open();
     },
 
     initEvent: function(){
