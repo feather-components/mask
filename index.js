@@ -14,7 +14,7 @@ if(typeof define == 'function' && define.amd){
 })(function($, Class, Overlay){
 return Class.$factory('mask', {
     initialize: function(opt){
-        var options = $.extend({
+        var options = this.options = $.extend({
             dom: null,
             container: document.body,
             color: '#000',
@@ -37,8 +37,14 @@ return Class.$factory('mask', {
         var self = this;
 
         self.o2s(window, 'resize', function(){
-            self.$overlay.setSize(false, false);
+            self.resetSize();
         });
+    },
+
+    resetSize: function(){
+        var self = this, container = self.options.container;
+        var size = Overlay.getSize(Overlay.isDocumentOrBody(container) ? window : container);
+        self.$overlay.setSize(size.width, size.height);
     },
 
     setOpacity: function(opacity){
