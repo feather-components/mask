@@ -56,6 +56,7 @@ return Class.$factory('mask', {
     },
 
     open: function(){
+        this.resetSize();
         this.$overlay.open();
         this.trigger('open');
     },
