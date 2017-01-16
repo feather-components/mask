@@ -20,10 +20,14 @@ return Class.$factory('mask', {
             color: '#000',
             opacity: 0.6,
             autoOpen: true
-        }, opt || {});
+        }, opt);
+
+        if(options.dom){
+            options.container = options.dom;
+        }
 
         this.$overlay = new Overlay({
-            container: options.dom || options.container,
+            container: options.container,
             autoOpen: false,
             className: 'ui3-mask'
         });
@@ -45,6 +49,7 @@ return Class.$factory('mask', {
     resetSize: function(){
         var self = this, container = self.options.container;
         var size = Overlay.getSize(Overlay.isDocumentOrBody(container) ? window : container);
+
         self.$overlay.setSize(size.width, size.height);
     },
 
