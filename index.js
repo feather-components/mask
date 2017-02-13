@@ -12,7 +12,7 @@ if(typeof define == 'function' && define.amd){
     factory(window.jQuery, window.jQuery.klass, window.jQuery.overlay);
 }
 })(function($, Class, Overlay){
-return Class.$factory('mask', {
+return $.mask = Class.$factory('mask', {
     initialize: function(opt){
         var options = this.options = $.extend({
             dom: null,
